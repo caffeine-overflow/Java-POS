@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.proteanit.sql.DbUtils;
 
 
 
@@ -32,6 +33,7 @@ public class pos1 extends javax.swing.JFrame {
     ResultSet rs =null;
     PreparedStatement pst = null;
     
+    int orderNum=0;
     String userName = NewJFrame.getUserName();
     String itemName = null;
     double price=0.0;
@@ -65,7 +67,6 @@ public class pos1 extends javax.swing.JFrame {
         jButton22 = new javax.swing.JButton();
         showUser1 = new javax.swing.JLabel();
         dateHeader1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jPanel3 = new javax.swing.JPanel();
@@ -108,6 +109,7 @@ public class pos1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 800));
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(58, 58, 58));
@@ -135,16 +137,12 @@ public class pos1 extends javax.swing.JFrame {
         dateHeader1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         dateHeader1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\jjj.PNG")); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,14 +159,10 @@ public class pos1 extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(showUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dateHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jTextPane1);
@@ -176,9 +170,8 @@ public class pos1 extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(48, 48, 48));
 
         coffee.setBackground(new java.awt.Color(204, 153, 0));
-        coffee.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        coffee.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         coffee.setForeground(new java.awt.Color(0, 0, 0));
-        coffee.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\coffee (1).png")); // NOI18N
         coffee.setText("Coffee");
         coffee.setBorder(null);
         coffee.setBorderPainted(false);
@@ -191,9 +184,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         doug.setBackground(new java.awt.Color(204, 153, 0));
-        doug.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        doug.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         doug.setForeground(new java.awt.Color(0, 0, 0));
-        doug.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\doughnut.png")); // NOI18N
         doug.setText("Doughnut");
         doug.setBorder(null);
         doug.setBorderPainted(false);
@@ -206,9 +198,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         tea.setBackground(new java.awt.Color(204, 0, 51));
-        tea.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        tea.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         tea.setForeground(new java.awt.Color(0, 0, 0));
-        tea.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\hot-drink.png")); // NOI18N
         tea.setText("Tea");
         tea.setBorder(null);
         tea.setBorderPainted(false);
@@ -221,9 +212,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         burger.setBackground(new java.awt.Color(0, 153, 0));
-        burger.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        burger.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         burger.setForeground(new java.awt.Color(0, 0, 0));
-        burger.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\hamburger.png")); // NOI18N
         burger.setText("Burger");
         burger.setBorder(null);
         burger.setBorderPainted(false);
@@ -236,9 +226,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         omelette.setBackground(new java.awt.Color(204, 102, 0));
-        omelette.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        omelette.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         omelette.setForeground(new java.awt.Color(0, 0, 0));
-        omelette.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\fried-egg.png")); // NOI18N
         omelette.setText("omelette");
         omelette.setToolTipText("");
         omelette.setBorder(null);
@@ -252,9 +241,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         muffin.setBackground(new java.awt.Color(204, 0, 51));
-        muffin.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        muffin.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         muffin.setForeground(new java.awt.Color(0, 0, 0));
-        muffin.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\cupcake.png")); // NOI18N
         muffin.setText("Muffin");
         muffin.setBorder(null);
         muffin.setBorderPainted(false);
@@ -267,9 +255,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         smoothie.setBackground(new java.awt.Color(204, 102, 0));
-        smoothie.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        smoothie.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         smoothie.setForeground(new java.awt.Color(0, 0, 0));
-        smoothie.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\soft-drink.png")); // NOI18N
         smoothie.setText("Smoothie");
         smoothie.setBorder(null);
         smoothie.setBorderPainted(false);
@@ -282,9 +269,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         fries.setBackground(new java.awt.Color(0, 153, 0));
-        fries.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        fries.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         fries.setForeground(new java.awt.Color(0, 0, 0));
-        fries.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\french-fries.png")); // NOI18N
         fries.setText("Fries");
         fries.setBorder(null);
         fries.setBorderPainted(false);
@@ -297,9 +283,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         ice.setBackground(new java.awt.Color(204, 153, 0));
-        ice.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        ice.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         ice.setForeground(new java.awt.Color(0, 0, 0));
-        ice.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\ice-cream.png")); // NOI18N
         ice.setText("Ice Cream");
         ice.setBorder(null);
         ice.setBorderPainted(false);
@@ -312,9 +297,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         chocolate.setBackground(new java.awt.Color(204, 102, 0));
-        chocolate.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        chocolate.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         chocolate.setForeground(new java.awt.Color(0, 0, 0));
-        chocolate.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\chocolate.png")); // NOI18N
         chocolate.setText("Chocolate");
         chocolate.setBorder(null);
         chocolate.setBorderPainted(false);
@@ -327,9 +311,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         pop.setBackground(new java.awt.Color(0, 153, 0));
-        pop.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        pop.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         pop.setForeground(new java.awt.Color(0, 0, 0));
-        pop.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\can.png")); // NOI18N
         pop.setText("Pop");
         pop.setBorder(null);
         pop.setBorderPainted(false);
@@ -342,9 +325,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         hot.setBackground(new java.awt.Color(204, 0, 51));
-        hot.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        hot.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         hot.setForeground(new java.awt.Color(0, 0, 0));
-        hot.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\hot-dog.png")); // NOI18N
         hot.setText("Hot dog");
         hot.setBorder(null);
         hot.setBorderPainted(false);
@@ -357,9 +339,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         soup.setBackground(new java.awt.Color(30, 144, 255));
-        soup.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        soup.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         soup.setForeground(new java.awt.Color(0, 0, 0));
-        soup.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\bowl.png")); // NOI18N
         soup.setText("Soup");
         soup.setBorder(null);
         soup.setBorderPainted(false);
@@ -372,9 +353,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         croissant.setBackground(new java.awt.Color(30, 144, 255));
-        croissant.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        croissant.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         croissant.setForeground(new java.awt.Color(0, 0, 0));
-        croissant.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\croissant.png")); // NOI18N
         croissant.setText("Croissant");
         croissant.setBorder(null);
         croissant.setBorderPainted(false);
@@ -387,9 +367,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         pizza.setBackground(new java.awt.Color(30, 144, 255));
-        pizza.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        pizza.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         pizza.setForeground(new java.awt.Color(0, 0, 0));
-        pizza.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\bread.png")); // NOI18N
         pizza.setText("Pizza");
         pizza.setBorder(null);
         pizza.setBorderPainted(false);
@@ -477,9 +456,8 @@ public class pos1 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(48, 48, 48));
 
         jButton17.setBackground(new java.awt.Color(204, 204, 204));
-        jButton17.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton17.setForeground(new java.awt.Color(0, 0, 0));
-        jButton17.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\error.png")); // NOI18N
         jButton17.setText("Cancel");
         jButton17.setBorder(null);
         jButton17.setBorderPainted(false);
@@ -492,9 +470,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         jButton18.setBackground(new java.awt.Color(204, 204, 204));
-        jButton18.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton18.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton18.setForeground(new java.awt.Color(0, 0, 0));
-        jButton18.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\negative.png")); // NOI18N
         jButton18.setText("Void");
         jButton18.setBorder(null);
         jButton18.setBorderPainted(false);
@@ -507,9 +484,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         jButton19.setBackground(new java.awt.Color(204, 204, 204));
-        jButton19.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton19.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton19.setForeground(new java.awt.Color(0, 0, 0));
-        jButton19.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\percentage.png")); // NOI18N
         jButton19.setText("Coupons");
         jButton19.setToolTipText("");
         jButton19.setBorder(null);
@@ -523,9 +499,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         jButton23.setBackground(new java.awt.Color(204, 204, 204));
-        jButton23.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton23.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton23.setForeground(new java.awt.Color(0, 0, 0));
-        jButton23.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\plus.png")); // NOI18N
         jButton23.setText("Add");
         jButton23.setBorder(null);
         jButton23.setBorderPainted(false);
@@ -538,9 +513,8 @@ public class pos1 extends javax.swing.JFrame {
         });
 
         jButton16.setBackground(new java.awt.Color(204, 204, 204));
-        jButton16.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jButton16.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton16.setForeground(new java.awt.Color(0, 0, 0));
-        jButton16.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\add-to-shopping-cart-e-commerce-symbol.png")); // NOI18N
         jButton16.setText("Place");
         jButton16.setBorder(null);
         jButton16.setBorderPainted(false);
@@ -688,13 +662,16 @@ public class pos1 extends javax.swing.JFrame {
                         .addGap(62, 62, 62))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(grant, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(grant, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(runningTax, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(couponField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -703,7 +680,7 @@ public class pos1 extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -732,7 +709,7 @@ public class pos1 extends javax.swing.JFrame {
                             .addComponent(runningTax, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(runningTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(grant, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(couponField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
@@ -740,18 +717,24 @@ public class pos1 extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(discountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -851,31 +834,44 @@ public class pos1 extends javax.swing.JFrame {
         
         if(grandTotal>0)
         {  
-        String orderNumber = orderNumber();
         reciept.append("\nTotal = " + grant.getText());
         reciept.append("\nTax = " + runningTax.getText());
-        reciept.append("\nSub total = " + runningTotal.getText() +"\n\nOrder : "+ orderNumber +"\n\n               Thank you, have a wonderful day");
+        reciept.append("\nSub total = " + runningTotal.getText());
         
-                String sql = "INSERT INTO sales (id ,SubTotal ,Tax,GrandTotal) VALUES(?,?,?,?)";
+                String sql = "INSERT INTO sales (SubTotal ,Tax,GrandTotal) VALUES(?,?,?)";
                 try
                 {
                     pst = conn.prepareStatement(sql);
-                    pst.setString(1,orderNumber);
-                    pst.setString(2,grant.getText());
-                    pst.setString(3,runningTax.getText());
-                    pst.setString(4,runningTotal.getText()); 
+                    pst.setString(1,grant.getText());
+                    pst.setString(2,runningTax.getText());
+                    pst.setString(3,runningTotal.getText()); 
                     pst.execute();
                     pst.close();
                     rs.close();
                 }
                 catch(Exception e)
-                {
+                {  
                 }
+                  
+                    String sql5 = "SELECT id FROM sales ORDER BY id DESC LIMIT 1";
+                try
+                    {
+                        pst = conn.prepareStatement(sql5);
+                        rs=pst.executeQuery();
+                        orderNum=rs.getInt("id");  
+                   }
+                catch(Exception e)
+                    {
+
+                    }
+                reciept.append("\n\nOrder number = " + orderNum);
+                reciept.append("\n\nThanks, have a wonderful day");
+        
                 String sql2 = "INSERT INTO items (OrderNumber,Coffee,Doug,Ice,Tea,Muffin,Hot,Burger,Fries,Pop,Smooth,Oml,Choc,Soup,Crois,Pizza) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 try
                 {
                     pst = conn.prepareStatement(sql2);
-                    pst.setString(1,orderNumber);
+                    pst.setInt(1, orderNum);
                     pst.setString(2,String.valueOf(priceArray[0]));
                     pst.setString(3,String.valueOf(priceArray[1]));
                     pst.setString(4,String.valueOf(priceArray[2])); 
@@ -903,7 +899,7 @@ public class pos1 extends javax.swing.JFrame {
                 try
                 {
                     pst = conn.prepareStatement(sql3);
-                    pst.setString(1,orderNumber);
+                    pst.setInt(1, orderNum);
                     pst.setString(2,timeStamps);
                     pst.execute();
                     pst.close();
@@ -916,7 +912,7 @@ public class pos1 extends javax.swing.JFrame {
                 try
                 {
                     pst = conn.prepareStatement(sql4);
-                    pst.setString(1,orderNumber);
+                    pst.setInt(1, orderNum);
                     pst.setString(2,userName);
                     pst.execute();
                     JOptionPane.showMessageDialog(null,"Order has been placed");
@@ -1024,12 +1020,6 @@ public class pos1 extends javax.swing.JFrame {
      index=14;
     }//GEN-LAST:event_pizzaActionPerformed
 
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-       setVisible(false);
-       NewJFrame window = new NewJFrame();
-       window.setVisible(true);
-    }//GEN-LAST:event_jButton22ActionPerformed
-
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
      if(price!=0)
      {
@@ -1067,6 +1057,12 @@ public class pos1 extends javax.swing.JFrame {
     private void discountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_discountFieldActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        setVisible(false);
+        NewJFrame window = new NewJFrame();
+        window.setVisible(true);
+    }//GEN-LAST:event_jButton22ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1114,7 +1110,7 @@ public class pos1 extends javax.swing.JFrame {
         reciept.append("           ** Phone:226-700-9229 | www.thecoffeeclub.ca **\n");
         String timeStamp = new SimpleDateFormat("                              yyyy.MM.dd  hh.mm a \n").format(new Date());
         reciept.append(timeStamp);
-        reciept.append("\n    *******************************************************   \n");
+        reciept.append("    *******************************************************   \n");
     }
     
     public static double arraySum(double [] doubleArray)
@@ -1165,7 +1161,7 @@ public class pos1 extends javax.swing.JFrame {
     private javax.swing.JButton coffee;
     public static javax.swing.JTextField couponField;
     private javax.swing.JButton croissant;
-    public static javax.swing.JLabel dateHeader1;
+    private javax.swing.JLabel dateHeader1;
     public static javax.swing.JTextField discountField;
     private javax.swing.JButton doug;
     private javax.swing.JButton fries;
@@ -1178,7 +1174,6 @@ public class pos1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1199,7 +1194,7 @@ public class pos1 extends javax.swing.JFrame {
     public static javax.swing.JTextField runningTax;
     public static javax.swing.JTextField runningTotal;
     private javax.swing.JLabel showUser;
-    public static javax.swing.JLabel showUser1;
+    private javax.swing.JLabel showUser1;
     private javax.swing.JButton smoothie;
     private javax.swing.JButton soup;
     private javax.swing.JButton tea;

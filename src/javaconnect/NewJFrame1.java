@@ -138,7 +138,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\danis\\Downloads\\CFGVHB.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaconnect/onyx (13).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -303,7 +303,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
             try
             {
               Class.forName("org.sqlite.JDBC");
-              Connection conn  = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\danis\\Documents\\NetBeansProjects\\dan.db");
+              Connection conn  = DriverManager.getConnection("jdbc:sqlite:dan.db");
               return conn;
             }catch(Exception e)
             {
